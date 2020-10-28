@@ -1,6 +1,7 @@
 import React from 'react';
-import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
+import { View, Text, StyleSheet, TouchableOpacity, FlatList } from 'react-native';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
+import BudgetListItem from '../components/BudetListItem'
 
 export default function Home() {
   return (
@@ -35,7 +36,23 @@ export default function Home() {
           </TouchableOpacity>
         </View>
       </View>
-      <View></View>
+      {/* flatlist... */}
+      {/* <FlatList> */}
+          <BudgetListItem />
+          <BudgetListItem />
+          <BudgetListItem />
+          <BudgetListItem />
+          <BudgetListItem />
+          <BudgetListItem />
+          <BudgetListItem />
+          <BudgetListItem />
+          <BudgetListItem />
+          <BudgetListItem />
+          <BudgetListItem />
+          <BudgetListItem />
+          <BudgetListItem />
+
+      {/* </FlatList> */}
     </View>
   );
 }
@@ -44,15 +61,12 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     width: '100%',
-    // paddingTop: '15%',
-    // alignItems: 'center',
   },
 
   header: {
     backgroundColor: '#4441cd',
     height: '40%',
     width: '100%',
-    // paddingTop: '10%',
     borderRadius: 20,
     alignItems:'center',
     justifyContent:'center'
@@ -62,7 +76,6 @@ const styles = StyleSheet.create({
     color: '#fff',
     fontSize: 15,
     fontWeight: '600',
-    // marginTop: '10%',
     textAlign: 'center',
   },
   balanceFigure: {
