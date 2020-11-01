@@ -1,9 +1,34 @@
 import React from 'react';
-import { View, Text, StyleSheet, TouchableOpacity, FlatList } from 'react-native';
+import {
+  View,
+  Text,
+  StyleSheet,
+  TouchableOpacity,
+  // FlatList,
+  Share
+} from 'react-native';
+import BudgetListItem from '../components/BudetListItem';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
-import BudgetListItem from '../components/BudetListItem'
+import { AntDesign } from '@expo/vector-icons';
 
-export default function Home() {
+export default function Home(props) {
+  const { navigation, route } = props;
+
+  const onShare = async () => {
+    try {
+      const result = await Share.share({
+        message: 'This is testing share'
+      })
+      console.log(result)
+      if(result.action === Share.sharedAction){
+
+      }
+      
+    } catch (error) {
+      
+    }
+  }
+
   return (
     <View style={styles.container}>
       <View style={styles.header}>
@@ -23,7 +48,8 @@ export default function Home() {
             />
           </TouchableOpacity>
           <TouchableOpacity
-            style={{...styles.incomeExpensesItem,  marginLeft: 15 }}
+            style={{ ...styles.incomeExpensesItem, marginLeft: 15 }}
+            onPress={() => navigation.navigate('Expenses')}
           >
             <Text style={styles.incomeExpensesItemTitle}>Expenses</Text>
             <Text style={styles.incomeExpensesItemFigure}>$5,754</Text>
@@ -38,29 +64,37 @@ export default function Home() {
       </View>
       {/* flatlist... */}
       {/* <FlatList> */}
-          <BudgetListItem />
-          <BudgetListItem />
-          <BudgetListItem />
-          <BudgetListItem />
-          <BudgetListItem />
-          <BudgetListItem />
-          <BudgetListItem />
-          <BudgetListItem />
-          <BudgetListItem />
-          <BudgetListItem />
-          <BudgetListItem />
-          <BudgetListItem />
-          <BudgetListItem />
+      <BudgetListItem />
+      <BudgetListItem />
+      <BudgetListItem />
+      <BudgetListItem />
+      <BudgetListItem />
+      <BudgetListItem />
+      <BudgetListItem />
+      <BudgetListItem />
+      <BudgetListItem />
+      <BudgetListItem />
+      <BudgetListItem />
+      <BudgetListItem />
+      <BudgetListItem />
 
       {/* </FlatList> */}
+      <AntDesign
+        name="pluscircle"
+        size={50}
+        color="#4441cd"
+        style={styles.addIcon}
+        onPress={() => navigation.navigate('AddorEditBudgetItem')}
+      />
     </View>
   );
 }
-
+// navigation.navigate('AddorEditBudgetItem')
 const styles = StyleSheet.create({
   container: {
     flex: 1,
     width: '100%',
+    backgroundColor:'white'
   },
 
   header: {
@@ -68,8 +102,8 @@ const styles = StyleSheet.create({
     height: '40%',
     width: '100%',
     borderRadius: 20,
-    alignItems:'center',
-    justifyContent:'center'
+    alignItems: 'center',
+    justifyContent: 'center',
   },
 
   title: {
@@ -105,4 +139,10 @@ const styles = StyleSheet.create({
   },
   incomeExpensesItemTitle: { color: 'grey', fontWeight: '600' },
   incomeExpensesItemFigure: { fontSize: 18, fontWeight: '700' },
+  addIcon: {
+    position: 'absolute',
+    bottom: 40,
+    right: 10,
+    zIndex: 53,
+  },
 });
